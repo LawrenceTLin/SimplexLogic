@@ -2,8 +2,6 @@
 
 This repository contains an extended implementation of the DiffLogic code written by the authors of Petersen et. al. (2022), who developed a method to train differentiable neural networks built on logical operations instead of traditional linear transformations.
 
-2. **EntropyReg**: An implementation that uses entropy regularization to encourage discrete logic operations
-
 ## Features
 - **Logic-based neural networks** using the 16 possible binary operations (AND, OR, XOR, etc.)
 - **Fully differentiable architecture** that can be trained with backpropagation
