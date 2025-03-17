@@ -1,30 +1,20 @@
-# LogicNets: Differentiable Logic Networks with Entropy Regularization
+# SimplexLogic: Differentiable Logic Networks Trained on the Whole Probability Simplex
 
-This repository contains implementations of differentiable neural networks built on logical operations instead of traditional linear transformations. It includes two complementary approaches:
+This repository contains an extended implementation of the DiffLogic code written by the authors of Petersen et. al. (2022), who developed a method to train differentiable neural networks built on logical operations instead of traditional linear transformations.
 
-1. **DeepDiffNet**: A framework for differentiable logic networks with Dirichlet initialization
 2. **EntropyReg**: An implementation that uses entropy regularization to encourage discrete logic operations
 
-## 🚀 Features
-
-### Core Features
+## Features
 - **Logic-based neural networks** using the 16 possible binary operations (AND, OR, XOR, etc.)
 - **Fully differentiable architecture** that can be trained with backpropagation
 - **MNIST classification examples** demonstrating practical applications
 - **Gradient behavior analysis tools** for deep networks
-
-### DeepDiffNet Features
-- **Dirichlet initialization** for balanced weight distribution across logic operations
-- **Simplex corners initialization** for discrete logic operation selection
-- **Support for very deep networks** with controllable gradient propagation
-
-### EntropyReg Features
 - **Entropy regularization** to encourage discrete logic gate selection
 - **Simplex projection** to maintain valid probability distributions
 - **Progressive discretization** with partial rounding and freezing
 - **Annealing schedules** for entropy regularization
 
-## 📋 Requirements
+## Requirements
 
 - Python 3.7+
 - PyTorch 1.8+
@@ -33,7 +23,7 @@ This repository contains implementations of differentiable neural networks built
 - tqdm (for progress bars)
 - torchvision (for MNIST examples)
 
-## 🔧 Installation
+## Installation
 
 ```bash
 # Clone the repository
@@ -44,7 +34,7 @@ cd logicnets
 pip install -r requirements.txt
 ```
 
-## 💡 Logic Operations
+## Logic Operations
 
 Both implementations support all 16 possible binary logic operations:
 
@@ -67,9 +57,7 @@ Both implementations support all 16 possible binary logic operations:
 | 14 | NAND             | 1     | 1     | 1     | 0     |
 | 15 | 1 (True)         | 1     | 1     | 1     | 1     |
 
-## 🧠 Core Components
-
-### DeepDiffNet Components
+## Core Components
 
 #### LogicLayer
 The basic building block that implements differentiable logic operations:
@@ -83,21 +71,6 @@ layer = LogicLayer(
     alpha=0.001             # Dirichlet concentration parameter
 )
 ```
-
-#### LogicNet
-A complete network constructed from multiple LogicLayers:
-
-```python
-model = LogicNet(
-    in_features=784,        # Input features
-    hidden_sizes=[1024, 512, 256],  # Hidden layer sizes
-    device='cuda',          # Device to use
-    initialization='dirichlet',  # Weight initialization method
-    alpha=0.001             # Dirichlet concentration parameter
-)
-```
-
-### EntropyReg Components
 
 #### LogicGateNetwork
 A network built with LogicLayers and entropy regularization:
@@ -134,30 +107,7 @@ entropy_scheduler = EntropyRegScheduler(
 )
 ```
 
-## 🔍 Usage Examples
-
-### Basic DeepDiffNet Usage
-
-```python
-import torch
-from logic_net import LogicNet
-
-# Create a model
-model = LogicNet(
-    in_features=100,
-    hidden_sizes=[100, 100, 100],
-    device='cuda',
-    alpha=0.001
-)
-
-# Create input (binary values)
-x = torch.randint(0, 2, (1, 100), device='cuda').float()
-
-# Forward pass
-output = model(x)
-```
-
-### Training with EntropyReg
+## Usage Examples
 
 ```python
 # Create a model
@@ -200,7 +150,7 @@ for epoch in range(num_epochs):
         partial_round_and_freeze(model, entropy_threshold)
 ```
 
-## 📊 Experiments and Analysis
+## Experiments and Analysis
 
 The repository includes various experiments and analysis tools:
 
@@ -241,41 +191,10 @@ for layer, ops in gate_operations.items():
         print(f"  Operation #{op}: {count} neurons")
 ```
 
-## 📝 Key Insights
-
-### DeepDiffNet Findings:
-- Using very small alpha values (around 0.001) for Dirichlet initialization improves gradient propagation
-- The "simplex corners" initialization offers discrete logic operations with different gradient properties
-- Networks with 20+ layers require careful initialization to maintain stable gradients
-
-### EntropyReg Findings:
-- Entropy regularization effectively encourages discretization of logic operations
-- Progressive rounding and freezing helps maintain accuracy while achieving discrete operations
-- Connection patterns significantly impact the expressiveness of the network
-- Logic gate distribution varies by layer, with certain operations being more common in different parts of the network
-
-## 📄 License
+## License
 
 [MIT License](LICENSE)
 
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📚 Citation
-
-If you use this code in your research, please cite:
-
-```
-@software{logicnets2025,
-  author = {Your Name},
-  title = {LogicNets: Differentiable Logic Networks with Entropy Regularization},
-  year = {2025},
-  url = {https://github.com/yourusername/logicnets}
-}
-```
-
 ## 🙏 Acknowledgments
 
-- This work builds upon principles from differentiable logic and neural networks
-- Thanks to the PyTorch team for providing the foundation for this implementation
+- This work builds upon Petersen, et al. (2022). Deep differentiable logic gate networks. Advances in Neural Information Processing Systems (NeurIPS).
