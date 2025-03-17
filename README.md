@@ -193,6 +193,6 @@ for layer, ops in gate_operations.items():
 
 [MIT License](LICENSE)
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - This work builds upon Petersen, et al. (2022). Deep differentiable logic gate networks. Advances in Neural Information Processing Systems (NeurIPS).
