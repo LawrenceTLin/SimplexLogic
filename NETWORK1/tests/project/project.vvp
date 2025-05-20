@@ -1,0 +1,69 @@
+#! /opt/homebrew/Cellar/icarus-verilog/12.0/bin/vvp
+:ivl_version "12.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/system.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/v2005_math.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/va_math.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/v2009.vpi";
+S_0x13b60ac60 .scope package, "$unit" "$unit" 2 1;
+ .timescale 0 0;
+S_0x13b60add0 .scope module, "project_tb" "project_tb" 3 2;
+ .timescale -9 -12;
+P_0x13b607d20 .param/l "IW" 1 3 3, +C4<00000000000000000000000000100000>;
+P_0x13b607d60 .param/l "OW" 1 3 3, +C4<00000000000000000000000000010000>;
+v0x13b6219b0_0 .var/s "in", 31 0;
+v0x13b621a40_0 .net/s "out", 15 0, L_0x13b622220;  1 drivers
+S_0x13b6078c0 .scope module, "dut" "project" 3 9, 4 1 0, S_0x13b60add0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 32 "in";
+    .port_info 1 /OUTPUT 16 "out";
+P_0x13b6114f0 .param/l "FRAC_IN" 1 4 10, +C4<00000000000000000000000000010000>;
+P_0x13b611530 .param/l "FRAC_OUT" 1 4 11, +C4<00000000000000000000000000001000>;
+P_0x13b611570 .param/l "IW" 0 4 2, +C4<00000000000000000000000000100000>;
+P_0x13b6115b0 .param/l "MAX_Q16" 1 4 15, +C4<00000000011111111111111100000000>;
+P_0x13b6115f0 .param/l "MAX_Q8" 1 4 19, +C4<0111111111111111>;
+P_0x13b611630 .param/l "MIN_Q16" 1 4 16, +C4<11111111100000000000000000000000>;
+P_0x13b611670 .param/l "MIN_Q8" 1 4 20, +C4<1000000000000000>;
+P_0x13b6116b0 .param/l "OW" 0 4 3, +C4<00000000000000000000000000010000>;
+v0x13b610a50_0 .net *"_ivl_1", 0 0, L_0x13b621af0;  1 drivers
+L_0x140078058 .functor BUFT 1, C4<0111111111111111>, C4<0>, C4<0>, C4<0>;
+v0x13b6211e0_0 .net/2s *"_ivl_10", 15 0, L_0x140078058;  1 drivers
+L_0x1400780a0 .functor BUFT 1, C4<11111111100000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x13b621280_0 .net/2s *"_ivl_12", 31 0, L_0x1400780a0;  1 drivers
+v0x13b621310_0 .net *"_ivl_14", 0 0, L_0x13b621f90;  1 drivers
+L_0x1400780e8 .functor BUFT 1, C4<1000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x13b6213a0_0 .net/2s *"_ivl_16", 15 0, L_0x1400780e8;  1 drivers
+v0x13b621470_0 .net *"_ivl_18", 15 0, L_0x13b6220c0;  1 drivers
+v0x13b621510_0 .net *"_ivl_3", 14 0, L_0x13b621bf0;  1 drivers
+L_0x140078010 .functor BUFT 1, C4<00000000011111111111111100000000>, C4<0>, C4<0>, C4<0>;
+v0x13b6215c0_0 .net/2s *"_ivl_6", 31 0, L_0x140078010;  1 drivers
+v0x13b621670_0 .net *"_ivl_8", 0 0, L_0x13b621e10;  1 drivers
+v0x13b621780_0 .net/s "in", 31 0, v0x13b6219b0_0;  1 drivers
+v0x13b621820_0 .net/s "out", 15 0, L_0x13b622220;  alias, 1 drivers
+v0x13b6218d0_0 .net/s "slice", 15 0, L_0x13b621c90;  1 drivers
+L_0x13b621af0 .part v0x13b6219b0_0, 31, 1;
+L_0x13b621bf0 .part v0x13b6219b0_0, 8, 15;
+L_0x13b621c90 .concat [ 15 1 0 0], L_0x13b621bf0, L_0x13b621af0;
+L_0x13b621e10 .cmp/gt.s 32, v0x13b6219b0_0, L_0x140078010;
+L_0x13b621f90 .cmp/gt.s 32, L_0x1400780a0, v0x13b6219b0_0;
+L_0x13b6220c0 .functor MUXZ 16, L_0x13b621c90, L_0x1400780e8, L_0x13b621f90, C4<>;
+L_0x13b622220 .functor MUXZ 16, L_0x13b6220c0, L_0x140078058, L_0x13b621e10, C4<>;
+    .scope S_0x13b60add0;
+T_0 ;
+    %pushi/vec4 4283170161, 0, 32;
+    %store/vec4 v0x13b6219b0_0, 0, 32;
+    %delay 1000, 0;
+    %vpi_call/w 3 18 "$display", "out = %0d", v0x13b621a40_0 {0 0 0};
+    %vpi_call/w 3 19 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "project_tb.sv";
+    "project.sv";
