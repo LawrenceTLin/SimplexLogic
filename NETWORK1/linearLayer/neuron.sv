@@ -18,7 +18,7 @@ module neuron #(
         const_mul #(
             .WIDTH    (WIDTH),
             .OUT_WIDTH(2*WIDTH),
-            .WEIGHT   ( $signed(WEIGHTS_FLAT[(N-i)*WIDTH -1 -: WIDTH]) )
+            .WEIGHT   ( $signed(WEIGHTS_FLAT[(N-i)*WIDTH -1 -: WIDTH]) ) // must include $signed to get correct results!
             ) mul_i (
             .in  (in[i]),
             .out (products[i])
